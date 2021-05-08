@@ -1,0 +1,34 @@
+<head>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" type = "text/css" href = "style.css">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/home.css') }}"/>
+    <title>Text Hunt</title>
+
+</head>
+
+
+<body>
+    <h1>
+        Text Hunt
+    </h1>
+
+    <div>
+        <p><span>{{result.cont}}</span> Resultados encontrados em <span>{{result.duration}}</span> segundos para o termo <span>{{term}}</span></p>
+        {%for ocu in result['occurences']%}
+            <div>
+                <a href="redirect/{{ocu.index}}/{{term}}">
+                    <h4>
+                    Texto de {{ocu.user}}
+                    </h4>
+                </a>
+
+                <p class = "preview">
+                    {{ocu.preview}}
+                </p>
+            </div>
+        {%endfor%}
+    </div>
+</body>

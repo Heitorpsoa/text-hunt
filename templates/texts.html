@@ -1,0 +1,63 @@
+<head>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" type = "text/css" href = "style.css">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/home.css') }}"/>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/texts.css') }}"/>
+    <title>Text Hunt</title>
+
+</head>
+
+
+<body>
+    <h1>
+        Text Hunt
+    </h1>
+
+    <div class = "container">
+
+        {%for text in texts%}
+            <div class = "user">        
+                <span>
+                    <span class = "info">
+                        Usuário:
+                    </span>
+                    <span>
+                        {{text.user}}
+                    </span>
+                </span>
+
+                <span>
+                    <span class = "info">
+                        Tags:
+                    </span>
+                    <span>
+                        {{text.tags}}
+                    </span>
+                </span>
+
+                    <span class = "info">
+                        Texto:
+                    </span>
+                    <textarea readonly name="" id="" cols="30" rows="10">
+                        {{text.data}}
+                    </textarea>
+
+                    {% if text.processed %}
+
+                        <span class = "info">
+                            Texto Processado:
+                        </span>
+                        <textarea readonly name="" id="" cols="30" rows="10" >
+                            {{text.processed}}
+                        </textarea>
+
+                    {%endif%}
+            </div>
+        {%endfor%}
+
+    </div>
+    
+</body>

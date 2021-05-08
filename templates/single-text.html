@@ -1,0 +1,42 @@
+<head>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" type = "text/css" href = "style.css">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/home.css') }}"/>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/texts.css') }}"/>
+    <title>Text Hunt</title>
+
+</head>
+
+
+<body>
+    <h1>
+        Text Hunt
+    </h1>
+
+    <div class = "container">
+        <h2>
+            Texto de {{text.user}}
+        </h2>
+        <p id = "text" style = "text-align: justify; padding: 2%; font-family: 'Courier New', Courier, monospace;">
+            {{text.data}}
+        </p>
+    </div>
+    
+    <script>
+        function highlight(text) {
+            console.log('Vou hightlightar o' + term)
+            var inputText = document.getElementById("text");
+            var innerHTML = inputText.innerHTML;
+
+            var regex = new RegExp(text, "g");
+            var text = innerHTML.replace(regex, "<span class = 'highlight'>" +text+ '</span>')
+            inputText.innerHTML = text;
+            
+        }
+        let term = {{term|tojson}}
+        highlight(term)
+    </script>
+</body>

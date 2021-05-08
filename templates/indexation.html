@@ -1,0 +1,76 @@
+<head>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" type = "text/css" href = "style.css">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/home.css') }}"/>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/index.css') }}"/>
+    <title>Text Hunt</title>
+
+
+
+</head>
+
+
+<body>
+    <h1>
+        Text Hunt
+    </h1>
+
+    <div style = "display: flex; flex-direction: column; align-items: center;">
+        {%for key in index%}
+        
+            <button class = "cola">
+                
+                    {{key}}
+                
+            </button>
+
+            <div class = "content">
+                <h3>
+                    Ocorrências
+                </h3>
+                <p>
+                    {{index[key]['occurences']}}
+                </p>
+
+                <h3>
+                    Pesos das tags
+                </h3>
+                
+                <div style = "display: block; flex-direction: row;">
+                {%for tag in index[key]['tagsWeight']%}
+                    <h5>
+                        {{tag}}:
+                    </h5>
+                    <p>
+                        {{index[key]['tagsWeight'][tag]}}
+                    </p>
+                
+                {%endfor%}
+                </div>
+                <!-- aaaaaaaa -->
+            </div>
+        {%endfor%}
+    </div>
+
+    <script>
+        var coll = document.getElementsByClassName("cola");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            console.log('OI')
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+            content.style.display = "none";
+            } else {
+            content.style.display = "block";
+            }
+        });
+        }
+
+    </script>
+</body>
