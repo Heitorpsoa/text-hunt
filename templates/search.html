@@ -3,7 +3,6 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" type = "text/css" href = "style.css">
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/home.css') }}"/>
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/search.css') }}"/>
 
@@ -19,13 +18,19 @@
     </h1>
 
     <div>
-        <form action="search/go" method="GET">
-            <input name = "term" type="text">
-            <button>go</button>
-
-            {%for tag in tags%}
-            <input type="checkbox" name = {{tag}}>
-            {%endfor%}
+        <form class = "container" action="search/go" method="POST">
+            <div>
+                <input name = "term" type="text">
+                <button>go</button>
+            </div>
+            
+                {%for tag in tags%}
+                <div class = "box">
+                    <input id = "{{loop.index}}" type="checkbox" name = "tags" value = {{tag}}></input>
+                    <span class = "check"></span>
+                    <label for="{{loop.index}}">{{tag}}</label>
+                </div>
+                {%endfor%}
         </form>
     </div>
     
